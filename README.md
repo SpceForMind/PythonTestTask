@@ -9,4 +9,5 @@
  >python3 find_way_to_file_by_string.py <test_string
  ***
  **Ниже приводятся результаты работы программы на mac os**
+ -----------------------------------
 ![screenshot of sample](https://github.com/SpceForMind/images/blob/master/Запуск%20тестового%20задания.png)
