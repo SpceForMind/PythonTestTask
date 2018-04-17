@@ -1,26 +1,29 @@
 
 import os
+import sys
 
 def CreateTestPolygon(matrix_ways):
     root = os.getcwd() + '/'
     new_dir = root
 
     for way in matrix_ways:
-        for particular_way in way:
-            if str(particular_way).endswith('.txt'):
-                open(new_dir + str(particular_way), 'w')
-            else:
-                new_dir +=  str(particular_way) + '/'
-                #print(new_dir)
-                if not os.path.isdir(new_dir):
-                    os.mkdir(new_dir)
+        new_dir += os.path.split(str(way))[0]
+        file_name = os.path.split(str(way))[1]
+        if not os.path.isdir(new_dir):
+            os.mkdir(new_dir)
+        if file_name.endswith('.txt'):
+            with open(new_dir + '/' + file_name, 'w') as f:
+                f.close()
         new_dir = root
 
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print("No way for files!\n")
+        sys.exit(1)
+    
+    matrix_ways = []
 
-way_to_create_files = input().split()
-matrix_ways = []
+    for way in sys.argv:
+       matrix_ways.append(str(way))
 
-for way in way_to_create_files:
-    matrix_ways += [str(way).split('/')]
-
-CreateTestPolygon(matrix_ways)
+    CreateTestPolygon(matrix_ways)

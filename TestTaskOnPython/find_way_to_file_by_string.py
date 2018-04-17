@@ -1,10 +1,9 @@
 
 import os
 
-def PrintMatrix(full_ways, matrix_dirs, matrix_files):
+def PrintMatrix(full_ways, matrix_files):
     for i in range(len(full_ways)):
         print('full way:', full_ways[i])
-        print('directores:', matrix_dirs[i])
         print('files:', matrix_files[i])
 
 #delete character that is not a letter
@@ -22,31 +21,27 @@ def FileName(cur_file):
 def FindFilesFromStr(full_ways, matrix_files, c):
     for i in range(len(full_ways)):
         for cur_file in matrix_files[i]:
-            if FileName(str(cur_file)) == c:
+            if FileName(str(cur_file)) == c and (str(cur_file)).endswith('.txt'):
                 print(full_ways[i] + '/' + str(cur_file))
                 matrix_files[i].remove(cur_file)
                 return
             
 
 
-def main():
+if __name__ == "__main__":
     string = input()
     correct_str = CorrectString(string)
 
     root_directory = os.getcwd()
     full_ways = []
-    matrix_dirs = []
     matrix_files = []
 
 
-    for d, dirs, files in os.walk(root_directory):
-        full_ways += [d]
-        matrix_dirs += [dirs]
-        matrix_files += [files]
+    for f_way, dirs, files in os.walk(root_directory):
+        full_ways.append(f_way)
+        matrix_files.append(files)
 
-   #PrintMatrix(full_ways, matrix_dirs, matrix_files)
+    #PrintMatrix(full_ways, matrix_files)
 
     for c in correct_str:
         FindFilesFromStr(full_ways, matrix_files, c)
-
-main()
