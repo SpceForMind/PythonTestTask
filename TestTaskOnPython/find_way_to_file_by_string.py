@@ -1,5 +1,6 @@
 
 import os
+import sys
 
 def PrintMatrix(full_ways, matrix_files):
     for i in range(len(full_ways)):
@@ -29,8 +30,10 @@ def FindFilesFromStr(full_ways, matrix_files, c):
 
 
 if __name__ == "__main__":
-    string = input()
-    correct_str = CorrectString(string)
+    if len(sys.argv) == 1:
+        print("No string for find way!")
+        sys.exit(1)
+    correct_str = CorrectString(sys.argv[1])
 
     root_directory = os.getcwd()
     full_ways = []
