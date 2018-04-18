@@ -1,6 +1,6 @@
 
 import os
-import sys
+import argparse
 
 def PrintMatrix(full_ways, matrix_files):
     for i in range(len(full_ways)):
@@ -30,10 +30,9 @@ def FindFilesFromStr(full_ways, matrix_files, c):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        print("No string for find way!")
-        sys.exit(1)
-    correct_str = CorrectString(sys.argv[1])
+    parser = argparse.ArgumentParser()
+    parser.add_argument("string", nargs = '?') #expected one word for argument
+    namespace = parser.parse_args()
 
     root_directory = os.getcwd()
     full_ways = []
@@ -44,7 +43,5 @@ if __name__ == "__main__":
         full_ways.append(f_way)
         matrix_files.append(files)
 
-    #PrintMatrix(full_ways, matrix_files)
-
-    for c in correct_str:
+    for c in namespace.string:
         FindFilesFromStr(full_ways, matrix_files, c)

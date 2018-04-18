@@ -1,6 +1,6 @@
 
 import os
-import sys
+import argparse
 
 def CreateTestPolygon(matrix_ways):
     root = os.getcwd() + '/'
@@ -12,18 +12,18 @@ def CreateTestPolygon(matrix_ways):
         if not os.path.isdir(new_dir):
             os.mkdir(new_dir)
         if file_name.endswith('.txt'):
-            with open(new_dir + '/' + file_name, 'w') as f:
-                f.close()
+            new_file =  open(new_dir + '/' + file_name, 'w')
+            new_file.close()
         new_dir = root
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        print("No way for files!")
-        sys.exit(1)
-    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('ways', nargs = '+')
+    namespace = parser.parse_args()
+
     matrix_ways = []
 
-    for way in sys.argv:
+    for way in namespace.ways:
        matrix_ways.append(str(way))
-
+    
     CreateTestPolygon(matrix_ways)
