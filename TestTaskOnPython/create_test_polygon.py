@@ -28,5 +28,4 @@ if __name__ == "__main__":
 
     for way in namespace.ways:
        matrix_ways.append(str(way))
-    print(matrix_ways)
     CreateTestPolygon(matrix_ways)
