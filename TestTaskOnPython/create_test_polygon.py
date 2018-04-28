@@ -1,32 +1,34 @@
 
 import os
 import argparse
+import random
 
-def CreateTestPolygon(matrix_ways):
+#options for create files system 
+FILE_NAMES = 'ABCDEFGHIGKLMNOPQRSTUVWXYZ'
+DIR_NAMES = ['Dir1', 'Dir2', 'Dir3', 'Dir4', 'Dir5']
+COUNT_FILES = 50
+DEEP = 6
+
+def CreateTestPolygon():
     root = os.getcwd() + '/'
     new_dir = root
-    
-    for way in matrix_ways:
-        matrix_embded_way = []
-        matrix_embded_way += os.path.split(way)[0].split('/')
-        for embded_way in matrix_embded_way:
-            new_dir += embded_way + '/'
+    new_file = root #complusory part of way
+
+    for i in range(COUNT_FILES):
+        for j in range(random.randint(0, DEEP)):
+            random_dir = DIR_NAMES[random.randint(0, len(DIR_NAMES) - 1)]
+            new_dir = os.path.join(new_dir, random_dir + '/')
             if not os.path.isdir(new_dir):
                 os.mkdir(new_dir)
-        file_name = os.path.split(way)[1]
-        if file_name.endswith('.txt'):
-            new_file =  open(new_dir + '/' + file_name, 'w')
-            new_file.close()
+        file_name = random.choice(FILE_NAMES) + '.txt'
+        if random.randint(1, 10) > 5:
+            file_name = file_name.lower()
+        new_file = os.path.join(new_dir, file_name)
+        print("create file:", new_file)
+        pfile = open(new_file, 'w')
+        pfile.close()
         new_dir = root
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('ways', nargs = '+')
-    namespace = parser.parse_args()
-    
-    matrix_ways = []
 
-    for way in namespace.ways:
-       matrix_ways.append(str(way))
-    print(matrix_ways)
-    CreateTestPolygon(matrix_ways)
+if __name__ == "__main__":
+    CreateTestPolygon()

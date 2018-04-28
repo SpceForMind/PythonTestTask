@@ -2,9 +2,9 @@
 import os
 import argparse
 
-def PrintMatrix(full_ways, matrix_files):
-    for i in range(len(full_ways)):
-        print('full way:', full_ways[i])
+def PrintMatrix(directory_ways, matrix_files):
+    for i in range(len(directory_ways)):
+        print('directory way:', directory_ways[i])
         print('files:', matrix_files[i])
 
 #delete character that is not a letter
@@ -19,29 +19,31 @@ def FileName(cur_file):
     return cur_file[0]
 
 #find file with current letter in string
-def FindFilesFromStr(full_ways, matrix_files, c):
-    for i in range(len(full_ways)):
+def FindFilesFromStr(directory_ways, matrix_files, c):
+    for i in range(len(directory_ways)):
         for cur_file in matrix_files[i]:
             if FileName(str(cur_file)) == c and (str(cur_file)).endswith('.txt'):
-                print(full_ways[i] + '/' + str(cur_file))
+                print(os.path.join(directory_ways[i] + '/', cur_file))
                 matrix_files[i].remove(cur_file)
                 return
             
+def CreateParser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("string", nargs = '?') #expected one word for argument
+    return parser
+    
+def WalkForRootDirectory(directory_ways, matrix_files):
+    root_directory = os.getcwd()
+    for f_way, dirs, files in os.walk(root_directory):
+        directory_ways.append(f_way)
+        matrix_files.append(files)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("string", nargs = '?') #expected one word for argument
-    namespace = parser.parse_args()
-
-    root_directory = os.getcwd()
-    full_ways = []
+    namespace = CreateParser().parse_args()
+    directory_ways = []
     matrix_files = []
+    WalkForRootDirectory(directory_ways, matrix_files)
 
-
-    for f_way, dirs, files in os.walk(root_directory):
-        full_ways.append(f_way)
-        matrix_files.append(files)
-
-    for c in namespace.string:
-        FindFilesFromStr(full_ways, matrix_files, c)
+    for c in CorrectString(namespace.string):
+        FindFilesFromStr(directory_ways, matrix_files, c)

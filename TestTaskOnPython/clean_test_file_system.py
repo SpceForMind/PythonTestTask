@@ -22,16 +22,18 @@ def DeleteTestDirs(matrix_dir_ways):
             print("rm -rf", matrix_dir_ways[i])
             os.rmdir(matrix_dir_ways[i])
 
-
-
-if __name__ == "__main__":
+def WalkForRootDirectory(matrix_dir_ways, matrix_files):
     root_dir = os.getcwd()
-    matrix_files = []
-    matrix_dir_ways = []
-    
     for dir_w, dirs, files in os.walk(root_dir):
         matrix_dir_ways.append(dir_w)
         matrix_files.append(files)
 
+
+
+if __name__ == "__main__":
+    matrix_files = []
+    matrix_dir_ways = []
+    
+    WalkForRootDirectory(matrix_dir_ways, matrix_files)
     DeleteTxtFiles(matrix_files, matrix_dir_ways)
     DeleteTestDirs(matrix_dir_ways)
