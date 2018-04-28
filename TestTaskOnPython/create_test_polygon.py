@@ -30,11 +30,8 @@ def CreateTestPolygon():
         new_dir = root
 
 
-<<<<<<< HEAD
 if __name__ == "__main__":
     CreateTestPolygon()
-=======
     for way in namespace.ways:
        matrix_ways.append(str(way))
     CreateTestPolygon(matrix_ways)
->>>>>>> cb0b1de0ec41b9cb76d3f6ca04f6fcf80ed73db3
