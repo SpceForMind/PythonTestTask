@@ -32,6 +32,3 @@ def CreateTestPolygon():
 
 if __name__ == "__main__":
     CreateTestPolygon()
-    for way in namespace.ways:
-       matrix_ways.append(str(way))
-    CreateTestPolygon(matrix_ways)
