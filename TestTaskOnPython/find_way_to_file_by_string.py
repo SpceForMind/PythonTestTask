@@ -40,10 +40,9 @@ def WalkForRootDirectory(directory_ways, matrix_files):
 
 
 if __name__ == "__main__":
-    namespace = CreateParser().parse_args()
     directory_ways = []
     matrix_files = []
     WalkForRootDirectory(directory_ways, matrix_files)
 
-    for c in CorrectString(namespace.string):
+    for c in CorrectString(CreateParser().parse_args().stirng):
         FindFilesFromStr(directory_ways, matrix_files, c)
