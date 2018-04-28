@@ -44,5 +44,5 @@ if __name__ == "__main__":
     matrix_files = []
     WalkForRootDirectory(directory_ways, matrix_files)
 
-    for c in CorrectString(CreateParser().parse_args().stirng):
+    for c in CorrectString(CreateParser().parse_args().string):
         FindFilesFromStr(directory_ways, matrix_files, c)
