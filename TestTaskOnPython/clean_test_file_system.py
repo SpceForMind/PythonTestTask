@@ -12,7 +12,8 @@ def DeleteTxtFiles(matrix_files, matrix_dir_ways):
     for i in range(len(matrix_dir_ways)): 
         for file_name in matrix_files[i]:
             cur_file = matrix_dir_ways[i] + '/' + file_name
-            if str(cur_file).endswith('.txt'):
+            #delete files only from root directory
+            if str(cur_file).endswith('.txt') and os.path.split(cur_file)[0] != root_dir:
                 print("rm", cur_file)
                 os.remove(cur_file)
 
