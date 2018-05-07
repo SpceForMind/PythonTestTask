@@ -4,13 +4,16 @@ import argparse
 import random
 
 #options for create files system 
+ROOTDIR = 'root'
 FILE_NAMES = 'ABCDEFGHIGKLMNOPQRSTUVWXYZ'
 DIR_NAMES = ['Dir1', 'Dir2', 'Dir3', 'Dir4', 'Dir5']
 COUNT_FILES = 50
 DEEP = 6
 
 def CreateTestPolygon():
-    root = os.getcwd() + '/'
+    root = os.path.join(os.getcwd() + '/', ROOTDIR + '/')
+    if not os.path.isdir(root):
+        os.mkdir(root)
     new_dir = root
     new_file = root #complusory part of way
 

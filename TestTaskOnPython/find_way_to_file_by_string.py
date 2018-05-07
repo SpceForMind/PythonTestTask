@@ -2,6 +2,11 @@
 import os
 import argparse
 
+
+directory_ways = []
+matrix_files = []
+
+
 def PrintMatrix(directory_ways, matrix_files):
     for i in range(len(directory_ways)):
         print('directory way:', directory_ways[i])
@@ -38,11 +43,12 @@ def WalkForRootDirectory(directory_ways, matrix_files):
         directory_ways.append(f_way)
         matrix_files.append(files)
 
+#Find way to files by current alpha from string
+def FindWays(directory_ways, matrix_files):
+     for c in CorrectString(CreateParser().parse_args().string):
+        FindFilesFromStr(directory_ways, matrix_files, c)
 
 if __name__ == "__main__":
-    directory_ways = []
-    matrix_files = []
-    WalkForRootDirectory(directory_ways, matrix_files)
+    WalkForRootDirectory(directory_ways, matrix_files) #initialize directory_ways and matrix_files 
+    FindWays(directory_ways, matrix_files)
 
-    for c in CorrectString(CreateParser().parse_args().string):
-        FindFilesFromStr(directory_ways, matrix_files, c)

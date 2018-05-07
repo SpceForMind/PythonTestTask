@@ -2,6 +2,10 @@
 import os
 
 
+matrix_files = []  
+matrix_dir_ways = []
+
+
 def DeleteTxtFiles(matrix_files, matrix_dir_ways):
     root_dir = os.getcwd()
     
@@ -31,9 +35,6 @@ def WalkForRootDirectory(matrix_dir_ways, matrix_files):
 
 
 if __name__ == "__main__":
-    matrix_files = []
-    matrix_dir_ways = []
-    
     WalkForRootDirectory(matrix_dir_ways, matrix_files)
     DeleteTxtFiles(matrix_files, matrix_dir_ways)
     DeleteTestDirs(matrix_dir_ways)
