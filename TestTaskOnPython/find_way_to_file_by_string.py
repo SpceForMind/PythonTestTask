@@ -16,7 +16,7 @@ def PrintMatrix(directory_ways, matrix_files):
 def CorrectString(string):
     new_str = ''
     for c in string:
-        if str(c).isalpha():
+        if c.isalpha():
             new_str += c
     return new_str
 
@@ -27,8 +27,8 @@ def FileName(cur_file):
 def FindFilesFromStr(directory_ways, matrix_files, c):
     for i in range(len(directory_ways)):
         for cur_file in matrix_files[i]:
-            if FileName(str(cur_file)) == c and (str(cur_file)).endswith('.txt'):
-                print(os.path.join(directory_ways[i] + '/', cur_file))
+            if FileName(cur_file) == c and cur_file.endswith('.txt'):
+                print(os.path.join(directory_ways[i], cur_file))
                 matrix_files[i].remove(cur_file)
                 return
             
