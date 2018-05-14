@@ -17,7 +17,7 @@ def CorrectString(string):
     new_str = ''
     for c in string:
         if c.isalpha():
-            new_str += c
+            new_str = ''.join([new_str, c])
     return new_str
 
 def FileName(cur_file):
