@@ -23,7 +23,7 @@ def CreateTestPolygon():
             new_dir = os.path.join(new_dir, random_dir)
             if not os.path.isdir(new_dir):
                 os.mkdir(new_dir)
-        file_name = ''.join([random.choice(FILE_NAMES), '.txt'])
+        file_name = '{0}{1}'.format(random.choice(FILE_NAMES), '.txt')
         if random.randint(1, 2) == 1:
             file_name = file_name.lower()
         new_file = os.path.join(new_dir, file_name)
